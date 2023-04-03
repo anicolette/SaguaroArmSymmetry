@@ -40,7 +40,7 @@ class Vect:
         return cls(magnitude, angle)
 
     def getAngle(self):
-        return self.angle
+        return int(self.angle)
 
     def getMagnitude(self):
         return float(self.magnitude)

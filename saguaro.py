@@ -38,7 +38,7 @@ class SaguaroArm:
         self.v = vect.Vect(self.adjustedMagnitude, degree)
 
     def getAdjustedVectors(self):
-        return self.v.getH(), self.v.getV()
+        return round(self.v.getH(), 2), round(self.v.getV(), 2)
 
     def getMagnitude(self):
         return self.adjustedMagnitude
@@ -50,7 +50,7 @@ class SaguaroArm:
         return self.length
 
     def getDegree(self):
-        return self.degree
+        return int(self.degree)
 
 
 class Saguaro:
@@ -69,7 +69,7 @@ class Saguaro:
 
     def getOutputRow(self):
         overallVect = self.getOverallVect()
-        return "%d,%d,%s,%s,%d,%d,%f,%d,%f,%f,%f" % (self.plotNo, self.sID, self.recorder, self.date, self.easting, self.northing, self.height, len(self.arms), self.getSymmetryScore(), overallVect.getMagnitude(), overallVect.getAngle())
+        return "%d,%d,%s,%s,%d,%d,%.2f,%d,%.2f,%.2f,%d" % (self.plotNo, self.sID, self.recorder, self.date, self.easting, self.northing, self.height, len(self.arms), self.getSymmetryScore(), overallVect.getMagnitude(), overallVect.getAngle())
 
     """
         Symmetry score is the magnitude of the sum of adjusted vectors divided by 

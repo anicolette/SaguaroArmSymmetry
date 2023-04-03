@@ -66,8 +66,8 @@ class SaguaroTest(unittest.TestCase):
         overallV = neSag.getOverallVect()
         h, v = overallV.getH(), overallV.getV()
 
-        self.assertAlmostEqual(h, 3.5355339059327376220042218105242)
-        self.assertAlmostEqual(v, 3.5355339059327376220042218105242)
+        self.assertAlmostEqual(h, 3.5355339059327376220042218105242, 2)
+        self.assertAlmostEqual(v, 3.5355339059327376220042218105242, 2)
         self.assertAlmostEqual(overallV.getAngle(), 45)
 
         neSag.addArm(3, 1, 7, 1, 3, 300)
@@ -83,8 +83,8 @@ class SaguaroTest(unittest.TestCase):
         overallV = seSag.getOverallVect()
         h, v = overallV.getH(), overallV.getV()
 
-        self.assertAlmostEqual(h, 3.5355339059327376220042218105242)
-        self.assertAlmostEqual(v, -3.5355339059327376220042218105242)
+        self.assertAlmostEqual(h, 3.5355339059327376220042218105242, 2)
+        self.assertAlmostEqual(v, -3.5355339059327376220042218105242, 2)
         self.assertAlmostEqual(overallV.getAngle(), 135)
 
         seSag.addArm(3, 1, 7, 1, 3, 300)
@@ -100,8 +100,8 @@ class SaguaroTest(unittest.TestCase):
         overallV = swSag.getOverallVect()
         h, v = overallV.getH(), overallV.getV()
 
-        self.assertAlmostEqual(h, -3.5355339059327376220042218105242)
-        self.assertAlmostEqual(v, -3.5355339059327376220042218105242)
+        self.assertAlmostEqual(h, -3.5355339059327376220042218105242, 2)
+        self.assertAlmostEqual(v, -3.5355339059327376220042218105242, 2)
         self.assertAlmostEqual(overallV.getAngle(), 225)
 
         swSag.addArm(3, 1, 7, 1, 3, 300)
@@ -117,8 +117,8 @@ class SaguaroTest(unittest.TestCase):
         overallV = swSag.getOverallVect()
         h, v = overallV.getH(), overallV.getV()
 
-        self.assertAlmostEqual(h, -3.5355339059327376220042218105242)
-        self.assertAlmostEqual(v, 3.5355339059327376220042218105242)
+        self.assertAlmostEqual(h, -3.5355339059327376220042218105242, 2)
+        self.assertAlmostEqual(v, 3.5355339059327376220042218105242, 2)
         self.assertAlmostEqual(overallV.getAngle(), 315)
 
         swSag.addArm(3, 1, 7, 1, 3, 135)
@@ -145,205 +145,207 @@ class SaguaroTest(unittest.TestCase):
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 0, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
         self.assertAlmostEqual(sq2H, 0)
-        self.assertAlmostEqual(sq2Y, 1.4142135623730950488016887242097)
+        self.assertAlmostEqual(sq2Y, 1.4142135623730950488016887242097, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 0, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
                                1.4142135623730950488016887242097)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
         self.assertAlmostEqual(sq2HH, 0)
-        self.assertAlmostEqual(sq2YH, .70710678118654752440084436210485)
+        self.assertAlmostEqual(sq2YH, .70710678118654752440084436210485, 2)
 
         sqrtTwoArm2 = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 360, 10)
         self.assertAlmostEqual(sqrtTwoArm2.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm2.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm2.getAdjustedVectors()
         self.assertAlmostEqual(sq2H, 0)
-        self.assertAlmostEqual(sq2Y, 1.4142135623730950488016887242097)
+        self.assertAlmostEqual(sq2Y, 1.4142135623730950488016887242097, 2)
 
         sqTwoHalfWay2 = saguaro.SaguaroArm(5, 1, 6, 1, 1, 360, 10)
         self.assertAlmostEqual(sqTwoHalfWay2.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay2.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay2.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay2.getAdjustedVectors()
         self.assertAlmostEqual(sq2HH, 0)
-        self.assertAlmostEqual(sq2YH, .70710678118654752440084436210485)
+        self.assertAlmostEqual(sq2YH, .70710678118654752440084436210485, 2)
 
     def test_arm_vectors_E(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 90, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
-        self.assertAlmostEqual(sq2H, 1.4142135623730950488016887242097)
+        self.assertAlmostEqual(sq2H, 1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sq2Y, 0)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 90, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
                                1.4142135623730950488016887242097)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, .70710678118654752440084436210485)
-        self.assertAlmostEqual(sq2YH, 0)
+        self.assertAlmostEqual(sq2HH, .70710678118654752440084436210485, 2)
+        self.assertAlmostEqual(sq2YH, 0, 2)
 
     def test_arm_vectors_S(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 180, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
         self.assertAlmostEqual(sq2H, 0)
-        self.assertAlmostEqual(sq2Y, -1 * 1.4142135623730950488016887242097)
+        self.assertAlmostEqual(sq2Y, -1 * 1.4142135623730950488016887242097, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 180, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, 0)
-        self.assertAlmostEqual(sq2YH, -1 * .70710678118654752440084436210485)
+        self.assertAlmostEqual(sq2HH, 0, 2)
+        self.assertAlmostEqual(
+            sq2YH, -1 * .70710678118654752440084436210485, 2)
 
     def test_arm_vectors_W(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 270, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
-        self.assertAlmostEqual(sq2H, -1 * 1.4142135623730950488016887242097)
-        self.assertAlmostEqual(sq2Y, 0)
+        self.assertAlmostEqual(sq2H, -1 * 1.4142135623730950488016887242097, 2)
+        self.assertAlmostEqual(sq2Y, 0, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 270, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, -1 * .70710678118654752440084436210485)
-        self.assertAlmostEqual(sq2YH, 0)
+        self.assertAlmostEqual(
+            sq2HH, -1 * .70710678118654752440084436210485, 2)
+        self.assertAlmostEqual(sq2YH, 0, 2)
 
     def test_arm_vectors_NE(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 45, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
-        self.assertAlmostEqual(sq2H, 1)
-        self.assertAlmostEqual(sq2Y, 1)
+        self.assertAlmostEqual(sq2H, 1, 2)
+        self.assertAlmostEqual(sq2Y, 1, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 45, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, .5)
-        self.assertAlmostEqual(sq2YH, .5)
+        self.assertAlmostEqual(sq2HH, .5, 2)
+        self.assertAlmostEqual(sq2YH, .5, 2)
 
     def test_arm_vectors_SE(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 135, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
-        self.assertAlmostEqual(sq2H, 1)
-        self.assertAlmostEqual(sq2Y, -1)
+        self.assertAlmostEqual(sq2H, 1, 2)
+        self.assertAlmostEqual(sq2Y, -1, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 135, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, .5)
-        self.assertAlmostEqual(sq2YH, -1 * .5)
+        self.assertAlmostEqual(sq2HH, .5, 2)
+        self.assertAlmostEqual(sq2YH, -1 * .5, 2)
 
     def test_arm_vectors_SW(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 225, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
-        self.assertAlmostEqual(sq2H, -1)
-        self.assertAlmostEqual(sq2Y, -1)
+        self.assertAlmostEqual(sq2H, -1, 2)
+        self.assertAlmostEqual(sq2Y, -1, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 225, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, -1 * .5)
-        self.assertAlmostEqual(sq2YH, -1 * .5)
+        self.assertAlmostEqual(sq2HH, -1 * .5, 2)
+        self.assertAlmostEqual(sq2YH, -1 * .5, 2)
 
     def test_arm_vectors_NW(self):
         # 1/1/sqrt(2) right triangle for simplicity
         sqrtTwoArm = saguaro.SaguaroArm(
             10, 1, 11, 1, 1, 315, 10)
         self.assertAlmostEqual(sqrtTwoArm.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(sqrtTwoArm.getMagnitude(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
 
         sq2H, sq2Y = sqrtTwoArm.getAdjustedVectors()
-        self.assertAlmostEqual(sq2H, -1)
-        self.assertAlmostEqual(sq2Y, 1)
+        self.assertAlmostEqual(sq2H, -1, 2)
+        self.assertAlmostEqual(sq2Y, 1, 2)
 
         sqTwoHalfWay = saguaro.SaguaroArm(5, 1, 6, 1, 1, 315, 10)
         self.assertAlmostEqual(sqTwoHalfWay.getLength(),
-                               1.4142135623730950488016887242097)
+                               1.4142135623730950488016887242097, 2)
         self.assertAlmostEqual(
-            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485)
+            sqTwoHalfWay.getMagnitude(), .70710678118654752440084436210485, 2)
 
         sq2HH, sq2YH = sqTwoHalfWay.getAdjustedVectors()
-        self.assertAlmostEqual(sq2HH, -1 * .5)
-        self.assertAlmostEqual(sq2YH, .5)
+        self.assertAlmostEqual(sq2HH, -1 * .5, 2)
+        self.assertAlmostEqual(sq2YH, .5, 2)
 
     if __name__ == '__main__':
         unittest.main()

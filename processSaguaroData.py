@@ -63,7 +63,7 @@ def main():
 
     print("Calculated data for %d arms on %d saguaros. Average arm length: %f" %
           (armCount, len(saguaroMap.keys()), totalLength / float(armCount)))
-    outFile.write("Plot_Number,Saguaro_Number,Recorder,Date,Easting,Northing,Saguaro_Height,Number_Of_Arms,Symmetry_Score,Overall_Arm_Vector_Magnitude,Overall_Arm_Vector_Direction\n")
+    outFile.write("Plot_Number,Saguaro_Number,Recorder,Date,Easting,Northing,Saguaro_Height,Number_Of_Arms,Symmetry_Score,Overall_Arm_Vector_Magnitude,Overall_Arm_Vector_Direction_Degrees\n")
     for key in saguaroMap:
         currSaguaro = saguaroMap[key]
         outFile.write(currSaguaro.getOutputRow() + "\n")
