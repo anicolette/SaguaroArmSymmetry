@@ -1,5 +1,5 @@
 import unittest
-import vect
+import vect as vect
 
 
 class VectTest(unittest.TestCase):
@@ -122,3 +122,7 @@ class VectTest(unittest.TestCase):
 
         self.assertAlmostEqual(seVect.getV(), 4)
         self.assertAlmostEqual(seVect.getH(), -3)
+
+
+if __name__ == '__main__':
+    unittest.main()

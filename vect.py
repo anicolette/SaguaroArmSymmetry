@@ -43,13 +43,13 @@ class Vect:
         return self.angle
 
     def getMagnitude(self):
-        return self.magnitude
+        return float(self.magnitude)
 
     def getV(self):
-        return self.V
+        return float(self.V)
 
     def getH(self):
-        return self.H
+        return float(self.H)
 
     def getQuad(self):
         return self.angle/90

@@ -54,11 +54,35 @@ class SaguaroArm:
 
 
 class Saguaro:
-    def __init__(self, height):
-        self.height = height
-        self.vSum = 0
-        self.hSum = 0
+    def __init__(self, plotNo, sID, recorder, date, easting, northing, height):
+        self.plotNo = plotNo
+        self.sID = sID
+        self.recorder = recorder
+        self.date = date
+        self.easting = easting
+        self.northing = northing
+        self.height = float(height)
+        self.vSum = 0.0
+        self.hSum = 0.0
+        self.asymTotal = 0.0
         self.arms = []
+
+    def getOutputRow(self):
+        overallVect = self.getOverallVect()
+        return "%d,%d,%s,%s,%d,%d,%f,%d,%f,%f,%f" % (self.plotNo, self.sID, self.recorder, self.date, self.easting, self.northing, self.height, len(self.arms), self.getSymmetryScore(), overallVect.getMagnitude(), overallVect.getAngle())
+
+    """
+        Symmetry score is the magnitude of the sum of adjusted vectors divided by 
+        the magnitude of a theoretical vector if all arms pointed in the same direction.
+        A score of 0 would indicate perfect symmetry, while a score of 1 would indicate
+        complete asymmetry.
+    """
+
+    def getSymmetryScore(self):
+        if len(self.arms) == 0:
+            return 0.0
+        overallVect = self.getOverallVect()
+        return overallVect.getMagnitude() / self.asymTotal
 
     def getHeight(self):
         return self.height
@@ -67,11 +91,10 @@ class Saguaro:
         newArm = SaguaroArm(aHeight, bHeight, cHeight,
                             dHeight, stemDist, degree, self.height)
         newH, newV = newArm.getAdjustedVectors()
-        # print("getting new adjusted vectors %f and %f" % (newH, newV))
         self.hSum += newH
         self.vSum += newV
+        self.asymTotal += newArm.getMagnitude()
         self.arms.append(newArm)
 
     def getOverallVect(self):
-        # print("hSum %f, vSum %f" % (self.hSum, self.vSum))
         return vect.Vect.fromDecompedVects(self.hSum, self.vSum)
