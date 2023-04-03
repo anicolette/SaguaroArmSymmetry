@@ -9,8 +9,41 @@ class Vect:
 
     def __init__(self, magnitude, angle):
         self.magnitude = magnitude
-        self.angle = angle
+        self.angle = angle % 360
         self.decompose()
+
+    @classmethod
+    def fromDecompedVects(cls, h, v):
+        magnitude = math.sqrt(math.pow(h, 2) + math.pow(v, 2))
+
+        angle = 0
+        if v > 0 and h == 0:  # N
+            angle = 0
+        elif v == 0 and h > 0:  # E
+            angle = 90
+        elif v < 0 and h == 0:  # S
+            angle = 180
+        elif v == 0 and h < 0:  # W
+            angle = 270
+        elif v > 0 and h > 0:  # NE
+            angle = math.degrees(math.atan(float(h)/float(v)))
+        elif v < 0 and h > 0:  # SE
+            angle = math.degrees(math.atan(float(abs(v))/float(h)))
+            angle += 90.0
+        elif v < 0 and h < 0:  # SW
+            angle = math.degrees(math.atan(float(abs(h))/float(abs(v))))
+            angle += 180.0
+        elif v > 0 and h < 0:  # NW
+            angle = math.degrees(math.atan(float(v)/float(abs(h))))
+            angle += 270
+
+        return cls(magnitude, angle)
+
+    def getAngle(self):
+        return self.angle
+
+    def getMagnitude(self):
+        return self.magnitude
 
     def getV(self):
         return self.V
@@ -41,13 +74,15 @@ class Vect:
             self.H = -1 * self.magnitude
             return
 
-        self.V = math.sin(math.radians(quadAngle)) * self.magnitude
-        self.H = math.cos(math.radians(quadAngle)) * self.magnitude
-
-        if quad == self.SE:
-            self.V = self.V * -1
+        if quad == self.NE:
+            self.H = math.sin(math.radians(quadAngle)) * self.magnitude
+            self.V = math.cos(math.radians(quadAngle)) * self.magnitude
+        elif quad == self.SE:
+            self.H = math.cos(math.radians(quadAngle)) * self.magnitude
+            self.V = math.sin(math.radians(quadAngle)) * self.magnitude * -1
         elif quad == self.SW:
-            self.V = self.V * -1
-            self.H = self.H * -1
+            self.H = math.sin(math.radians(quadAngle)) * self.magnitude * -1
+            self.V = math.cos(math.radians(quadAngle)) * self.magnitude * -1
         elif quad == self.NW:
-            self.H = self.H * -1
+            self.H = math.cos(math.radians(quadAngle)) * self.magnitude * -1
+            self.V = math.sin(math.radians(quadAngle)) * self.magnitude
