@@ -60,13 +60,18 @@ class Saguaro:
         self.hSum = 0
         self.arms = []
 
+    def getHeight(self):
+        return self.height
+
     def addArm(self, aHeight, bHeight, cHeight, dHeight, stemDist, degree):
         newArm = SaguaroArm(aHeight, bHeight, cHeight,
                             dHeight, stemDist, degree, self.height)
         newH, newV = newArm.getAdjustedVectors()
+        # print("getting new adjusted vectors %f and %f" % (newH, newV))
         self.hSum += newH
         self.vSum += newV
         self.arms.append(newArm)
 
     def getOverallVect(self):
+        # print("hSum %f, vSum %f" % (self.hSum, self.vSum))
         return vect.Vect.fromDecompedVects(self.hSum, self.vSum)

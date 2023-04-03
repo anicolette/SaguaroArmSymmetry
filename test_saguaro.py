@@ -3,6 +3,130 @@ import saguaro
 
 
 class SaguaroTest(unittest.TestCase):
+    def test_saguaro_overall_N(self):
+        nSag = saguaro.Saguaro(10)
+        nSag.addArm(6, 2, 16, 4, 6, 0)
+        overallV = nSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, 0)
+        self.assertAlmostEqual(v, 5)
+
+        nSag.addArm(3, 1, 7, 1, 3, 180)
+        overallV = nSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, 0)
+        self.assertAlmostEqual(v, 3.5)
+
+    def test_saguaro_overall_S(self):
+        sSag = saguaro.Saguaro(10)
+        sSag.addArm(6, 2, 16, 4, 6, 180)
+        overallV = sSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, 0)
+        self.assertAlmostEqual(v, -5)
+
+        sSag.addArm(3, 1, 7, 1, 3, 0)
+        overallV = sSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, 0)
+        self.assertAlmostEqual(v, -3.5)
+
+    def test_saguaro_overall_E(self):
+        eSag = saguaro.Saguaro(10)
+        eSag.addArm(6, 2, 16, 4, 6, 90)
+        overallV = eSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, 5)
+        self.assertAlmostEqual(v, 0)
+
+        eSag.addArm(3, 1, 7, 1, 3, 270)
+        overallV = eSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, 3.5)
+        self.assertAlmostEqual(v, 0)
+
+    def test_saguaro_overall_W(self):
+        wSag = saguaro.Saguaro(10)
+        wSag.addArm(6, 2, 16, 4, 6, 270)
+        overallV = wSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, -5)
+        self.assertAlmostEqual(v, 0)
+
+        wSag.addArm(3, 1, 7, 1, 3, 90)
+        overallV = wSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertAlmostEqual(h, -3.5)
+        self.assertAlmostEqual(v, 0)
+
+    def test_saguaro_overall_NE(self):
+        # 6/8/10 at half height
+        neSag = saguaro.Saguaro(10)
+        neSag.addArm(6, 2, 16, 4, 6, 45)
+        overallV = neSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+
+        self.assertAlmostEqual(h, 3.5355339059327376220042218105242)
+        self.assertAlmostEqual(v, 3.5355339059327376220042218105242)
+        self.assertAlmostEqual(overallV.getAngle(), 45)
+
+        neSag.addArm(3, 1, 7, 1, 3, 300)
+        overallV = neSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertTrue(h > 0)
+        self.assertTrue(v > 0)
+
+    def test_saguaro_overall_SE(self):
+        # 6/8/10 at half height
+        seSag = saguaro.Saguaro(10)
+        seSag.addArm(6, 2, 16, 4, 6, 135)
+        overallV = seSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+
+        self.assertAlmostEqual(h, 3.5355339059327376220042218105242)
+        self.assertAlmostEqual(v, -3.5355339059327376220042218105242)
+        self.assertAlmostEqual(overallV.getAngle(), 135)
+
+        seSag.addArm(3, 1, 7, 1, 3, 300)
+        overallV = seSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertTrue(h > 0)
+        self.assertTrue(v < 0)
+
+    def test_saguaro_overall_SW(self):
+        # 6/8/10 at half height
+        swSag = saguaro.Saguaro(10)
+        swSag.addArm(6, 2, 16, 4, 6, 225)
+        overallV = swSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+
+        self.assertAlmostEqual(h, -3.5355339059327376220042218105242)
+        self.assertAlmostEqual(v, -3.5355339059327376220042218105242)
+        self.assertAlmostEqual(overallV.getAngle(), 225)
+
+        swSag.addArm(3, 1, 7, 1, 3, 300)
+        overallV = swSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertTrue(h < 0)
+        self.assertTrue(v < 0)
+
+    def test_saguaro_overall_NW(self):
+        # 6/8/10 at half height
+        swSag = saguaro.Saguaro(10)
+        swSag.addArm(6, 2, 16, 4, 6, 315)
+        overallV = swSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+
+        self.assertAlmostEqual(h, -3.5355339059327376220042218105242)
+        self.assertAlmostEqual(v, 3.5355339059327376220042218105242)
+        self.assertAlmostEqual(overallV.getAngle(), 315)
+
+        swSag.addArm(3, 1, 7, 1, 3, 135)
+        overallV = swSag.getOverallVect()
+        h, v = overallV.getH(), overallV.getV()
+        self.assertTrue(h < 0)
+        self.assertTrue(v > 0)
+
     def test_arm_length_and_magnitude(self):
         # 3/4/5 right triangle for simplicity
         fiveArm = saguaro.SaguaroArm(3, 1, 7, 1, 3, 0, 10)
