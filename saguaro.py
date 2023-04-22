@@ -81,6 +81,8 @@ class Saguaro:
     def getSymmetryScore(self):
         if len(self.arms) == 0:
             return 0.0
+        if len(self.arms) == 1:
+            return 1.0
         overallVect = self.getOverallVect()
         return overallVect.getMagnitude() / self.asymTotal
 
